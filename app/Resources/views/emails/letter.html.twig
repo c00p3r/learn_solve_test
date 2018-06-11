@@ -1,0 +1,39 @@
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table th,
+    table td {
+        padding: 2px 6px;
+        border: 1px solid black;
+    }
+</style>
+
+<h3>{{ title }}</h3>
+
+{% if markets %}
+    <table>
+        <thead>
+        <tr>
+            {% for column in columns %}
+                <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for market in markets %}
+            <tr>
+                <td>{{ market['EXCHANGE'] }}</td>
+                <td>{{ market['TICKER'] }}</td>
+                <td>{{ market['DATE']|date('Y-m-d H:i:s') }}</td>
+                <td>{{ market['OPEN'] }}</td>
+                <td>{{ market['HIGH'] }}</td>
+                <td>{{ market['LOW'] }}</td>
+                <td>{{ market['CLOSE'] }}</td>
+                <td>{{ market['CHANGE']|number_format(2) }}%</td>
+                <td>{{ market['VOLUME'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
